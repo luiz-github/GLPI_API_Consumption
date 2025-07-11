@@ -6,6 +6,6 @@ import TicketController from "./controllers/ticket.controller.js"
 const session = new SessionController()
 const ticket = new TicketController()
 
-const token = await session.initSession("daniel.coelho", "Mudar@123")
+const token = await session.initSession("y", "x")
 
 session.killSession(token)
