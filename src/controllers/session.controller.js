@@ -38,4 +38,4 @@ class SessionController {
     }
 }
 
-module.exports = SessionController
+export default SessionController

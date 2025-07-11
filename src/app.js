@@ -8,7 +8,4 @@ const ticket = new TicketController()
 
 const token = await session.initSession("daniel.coelho", "Mudar@123")
 
-// console.log(await ticket.getTicketFields(token.session_token))
-
-
 session.killSession(token)
