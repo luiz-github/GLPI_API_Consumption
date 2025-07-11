@@ -1,26 +1,40 @@
-import fs from 'fs'
+import fs from 'fs/promises'
 
-async function ticketBodyFilter() {
-    try {
-        fs.readFile('./ticket.txt', 'utf8', (err, data) => {
-            if (err) throw err;
-
+class TicketBodyFilter {
+    async filter(amount) {
+        try {
+            let data = []
+            
+            const file = await fs.readFile('./ticket.txt', 'utf8');
+    
             // Gets ticket title from the .txt
-            const title = data.split('\r\n')[0]
-
+            const title = file.split('\r\n')[0];
+    
             // Gets ticket description from the .txt
-            const description = data.split('\r\n').slice(1).join('\r\n')
+            const description = file.split('\r\n').slice(1).join('\r\n');
+    
+            // Ticket structure
+            let ticket = {
+                name: title,
+                content: description
+            };
 
-            const ticket = {
-                'Title': title,
-                'Description': description
+            for (let i = 0; i < amount; i++) {
+                data.push({
+                    input: {
+                        name: title,
+                        content: description
+                    }
+                });
             }
-
-            console.log(ticket)
-        })
-    } catch (err) {
-        if (err) throw err;
+            return data;
+    
+        } catch (err) {
+            if (err) throw err;
+        }
     }
 }
+// const tbf = new TicketBodyFilter()
+// console.log(await tbf.filter(1))
 
-console.log(await ticketBodyFilter())
+export default TicketBodyFilter
