@@ -12,18 +12,13 @@ class TicketBodyFilter {
     
             // Gets ticket description from the .txt
             const description = file.split('\r\n').slice(1).join('\r\n');
-    
-            // Ticket structure
-            let ticket = {
-                name: title,
-                content: description
-            };
 
             for (let i = 0; i < amount; i++) {
                 data.push({
                     input: {
                         name: title,
-                        content: description
+                        content: description,
+                        locations_id: 1
                     }
                 });
             }
@@ -34,7 +29,7 @@ class TicketBodyFilter {
         }
     }
 }
-// const tbf = new TicketBodyFilter()
-// console.log(await tbf.filter(1))
+const tbf = new TicketBodyFilter()
+console.log(await tbf.filter(1))
 
 export default TicketBodyFilter

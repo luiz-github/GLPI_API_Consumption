@@ -4,13 +4,13 @@ class TicketController {
     apiURL = "https://www.suporte.unimontes.br/apirest.php"
     ticketURL = "/Ticket"
 
-    async createTicket(amount, sessionToken) {
+    async createTicket(amount, ticket, sessionToken) {
         const tbf = new TicketBodyFilter()
-        const data = await tbf.filter(amount)
+        const data = await tbf.filter(amount, ticket)
         
         console.log(data)
 
-        const response = await fetch(
+        await fetch(
             `${this.apiURL}${this.ticketURL}`,
             {
                 method: "POST",
