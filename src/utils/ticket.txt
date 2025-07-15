@@ -1,9 +1,9 @@
 Ticket tittle
-Solicitante: 
+Solicitante:
 E-mail:
 Ramal:
 Prédio:
-Andar/Sala: 
+Andar/Sala:
 Setor:
 Horário de Disponibilidade:
 Problema:
