@@ -1,0 +1,61 @@
+/* Centraliza o conteúdo da página */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* Estiliza o formulário */
+.form-container {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+label {
+    font-weight: bold;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 100%;
+}
+
+#submit {
+    background-color: #007bff;
+}
+#submit:hover {
+    background-color: #0056b3;
+}
+
+#logout {
+    margin-top: 5px;
+    background-color: red;
+}
+#logout:hover {
+    background-color: rgb(196, 0, 0);
+}
+
+button:hover {
+    background-color: #0056b3;
+}
