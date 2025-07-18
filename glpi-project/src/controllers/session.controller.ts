@@ -3,7 +3,7 @@ class SessionController {
     initSessionURL = "/initSession"
     killSessionURL = "/killSession"
 
-    async initSession(username, password) {
+    async initSession(username: string, password: string) {
         const response = await fetch(
             `${this.apiURL}${this.initSessionURL}`,
             {
@@ -15,10 +15,11 @@ class SessionController {
             }
         )
         const data = await response.json()
+        localStorage.setItem("Token", data.session_token)
         return data
     }
 
-    async killSession(sessionToken) {
+    async killSession(sessionToken: string | null) {
         const response = await fetch(
             `${this.apiURL}${this.killSessionURL}`,
             {

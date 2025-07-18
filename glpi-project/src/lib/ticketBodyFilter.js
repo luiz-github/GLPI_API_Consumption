@@ -29,7 +29,5 @@ class TicketBodyFilter {
         }
     }
 }
-const tbf = new TicketBodyFilter()
-console.log(await tbf.filter(1))
 
 export default TicketBodyFilter
