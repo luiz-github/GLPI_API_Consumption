@@ -26,11 +26,11 @@ function Ticket() {
     }
   }, [navigate]);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     try {
       const token = localStorage.getItem("Token")
       const session = new SessionController()
-      session.killSession(token)
+      await session.killSession(token)
       navigate("/");
     } catch (error) {
       console.log(error)

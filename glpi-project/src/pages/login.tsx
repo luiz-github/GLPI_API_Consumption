@@ -20,6 +20,13 @@ function Login() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate()
   
+  useEffect(() => {
+    const token = localStorage.getItem("Token");
+    if (token) {
+      navigate("/ticket");
+    }
+  }, [navigate]);
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
