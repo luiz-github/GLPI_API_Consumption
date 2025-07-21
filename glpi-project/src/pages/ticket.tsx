@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import {
@@ -12,14 +12,17 @@ import { Textarea } from "../components/ui/textarea";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import SessionController from "../controllers/session.controller"
+import TicketController from "../controllers/ticket.controller";
 
-export function Ticket() {
+function Ticket() {
+  const [amount, setAmount] = useState<number>(0);
+  const [ticket, setTicket] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("Token");
-    if (!!token) {
-      navigate("/login");
+    if (!token) {
+      navigate("/");
     }
   }, [navigate]);
 
@@ -28,8 +31,23 @@ export function Ticket() {
       const token = localStorage.getItem("Token")
       const session = new SessionController()
       session.killSession(token)
+      navigate("/");
     } catch (error) {
-      
+      console.log(error)
+    }
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const token = localStorage.getItem("Token")
+      const ticketController = new TicketController()
+
+      console.log(amount, ticket, token)
+
+      ticketController.createTicket(amount, ticket, token)
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -40,7 +58,7 @@ export function Ticket() {
         <CardHeader className="flex justify-center">
           <CardTitle>Cadastro de Ticket</CardTitle>
         </CardHeader>
-        <form>
+        <form onSubmit={handleSubmit}>
           <CardContent>
               <div className="flex flex-col gap-6">
                 <div className="grid gap-2">
@@ -48,8 +66,9 @@ export function Ticket() {
                   <Input
                     id="amount"
                     type="number"
-                    defaultValue={1}
+                    defaultValue={amount}
                     min={0}
+                    onChange={(e) => setAmount(Number(e.target.value))}
                     required
                   />
                 </div>
@@ -60,6 +79,7 @@ export function Ticket() {
                   <Textarea
                     id="ticket"
                     placeholder="Cole o ticket aqui..."
+                    onChange={(e) => setTicket(e.target.value)}
                     required
                   />
                 </div>
@@ -69,7 +89,7 @@ export function Ticket() {
             <Button type="submit" className="w-full">
               Abrir chamados
             </Button>
-            <Button className="w-full bg-red-900 hover:bg-red-800">
+            <Button className="w-full bg-red-900 hover:bg-red-800" onClick={handleLogout}>
               Sair
             </Button>
           </CardFooter>

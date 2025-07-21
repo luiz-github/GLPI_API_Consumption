@@ -1,9 +1,0 @@
-Ticket tittle
-Solicitante:
-E-mail:
-Ramal:
-Prédio:
-Andar/Sala:
-Setor:
-Horário de Disponibilidade:
-Problema:

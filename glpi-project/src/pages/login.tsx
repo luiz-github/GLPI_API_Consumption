@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "../components/ui/button"
 import {
   Card,
@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom"
 
 import initSession from "../controllers/session.controller"
 
-export function Login() {
+function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate()
@@ -25,7 +25,15 @@ export function Login() {
 
     try {
       const session = new initSession()
-      session.initSession(username, password)
+      const login = await session.initSession(username, password) as {
+        success: boolean;
+        data: any;
+      };
+
+      if (login.success == false) {
+        alert("Credenciais incorretas!")
+      }
+
       navigate('/ticket')
     } catch (error) {
       console.log(error)

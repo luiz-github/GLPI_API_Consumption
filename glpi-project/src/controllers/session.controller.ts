@@ -4,19 +4,38 @@ class SessionController {
     killSessionURL = "/killSession"
 
     async initSession(username: string, password: string) {
-        const response = await fetch(
-            `${this.apiURL}${this.initSessionURL}`,
-            {
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Basic ${btoa(username + ':' + password)}`
+        try {
+            const response = await fetch(
+                `${this.apiURL}${this.initSessionURL}`,
+                {
+                    method: "GET",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Basic ${btoa(username + ':' + password)}`
+                    }
+                }
+            )
+            const data = await response.json()
+
+            if (response.status != 200) {
+                return {
+                    "success": false,
+                    "data": data
                 }
             }
-        )
-        const data = await response.json()
-        localStorage.setItem("Token", data.session_token)
-        return data
+
+            if (data?.session_token) {
+                localStorage.setItem("Token", data.session_token)
+            }
+
+            return {
+                    success: true,
+                    data: data
+                }
+        } catch (error) {
+            console.log(error)
+            return error
+        }
     }
 
     async killSession(sessionToken: string | null) {
@@ -31,7 +50,11 @@ class SessionController {
             }
         )
         const data = await response.json()
-        return data
+        localStorage.removeItem("Token")
+        return {
+            success: true,
+            data: data 
+        }
     }
 }
 
