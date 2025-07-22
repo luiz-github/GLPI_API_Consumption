@@ -11,7 +11,7 @@ class TicketController {
         
         console.log(data, token)
 
-        for (let i = 0; i <= amount; i++) {
+        for (let i = 1; i <= amount; i++) {
             await fetch(
                 `${this.apiURL}${this.ticketURL}`,
                 {

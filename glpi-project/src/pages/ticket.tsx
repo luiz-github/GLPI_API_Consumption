@@ -42,15 +42,15 @@ function Ticket() {
     try {
       const token = localStorage.getItem("Token")
       const ticketController = new TicketController()
+      await ticketController.createTicket(amount, ticket, token)
 
-      console.log(amount, ticket, token)
-
-      ticketController.createTicket(amount, ticket, token)
+      setAmount(0)
+      setTicket('')
+      alert("Chamados Abertos!")
     } catch (error) {
       console.log(error)
     }
   }
-
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -66,7 +66,7 @@ function Ticket() {
                   <Input
                     id="amount"
                     type="number"
-                    defaultValue={amount}
+                    value={amount}
                     min={0}
                     onChange={(e) => setAmount(Number(e.target.value))}
                     required
@@ -78,6 +78,7 @@ function Ticket() {
                   </div>
                   <Textarea
                     id="ticket"
+                    value={ticket}
                     placeholder="Cole o ticket aqui..."
                     onChange={(e) => setTicket(e.target.value)}
                     required
