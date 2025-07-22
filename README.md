@@ -55,4 +55,4 @@ Crie um arquivo .env na raiz do projeto com a seguinte variável:
 
 ```bash
 # Adicione a url da API na raiz em um arquivo .env
-VITE_API_BASE_URL=https://www.suporte.unimontes.br/apirest.php
+VITE_API_BASE_URL=https://www.exemple.exemple.br/apirest.php
