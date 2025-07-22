@@ -1,5 +1,5 @@
 class SessionController {
-    apiURL = "https://www.suporte.unimontes.br/apirest.php"
+    apiURL = import.meta.env.VITE_API_BASE_URL
     initSessionURL = "/initSession"
     killSessionURL = "/killSession"
 

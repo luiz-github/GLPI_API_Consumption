@@ -1,7 +1,7 @@
 import TicketBodyFilter from '../lib/ticketBodyFilter.ts'
 
 class TicketController {
-    apiURL = "https://www.suporte.unimontes.br/apirest.php"
+    apiURL = import.meta.env.VITE_API_BASE_URL
     ticketURL = "/Ticket"
 
     async createTicket(amount: number, ticket: string, sessionToken: string | null) {
