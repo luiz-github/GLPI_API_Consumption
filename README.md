@@ -8,6 +8,17 @@ A abertura de chamados repetitivos no GLPI pode ser uma tarefa demorada. Este pr
 
 A aplicação possui autenticação com **usuário e senha**, envia as credenciais à API do GLPI, e utiliza o Token criado para registrar os chamados automaticamente.
 
+## 🖼️ Exemplo da Interface
+
+### Tela de Login
+
+![Login](./public/login.png)
+
+### Tela de Criação de Chamado
+
+![Cadastro de Ticket](./public/ticket.png)
+
+
 ## ⚙️ Funcionalidades
 
 - Tela de login com autenticação via **usuário e senha**

@@ -53,9 +53,9 @@ function Login() {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <Card className="w-full max-w-sm">
         <CardHeader>
-          <CardTitle>Login - Unimontes</CardTitle>
+          <CardTitle>Login</CardTitle>
           <CardDescription>
-            Credenciais do GLPI da Unimontes
+            Credenciais do GLPI
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
