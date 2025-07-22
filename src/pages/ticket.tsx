@@ -90,7 +90,7 @@ function Ticket() {
             <Button type="submit" className="w-full">
               Abrir chamados
             </Button>
-            <Button className="w-full bg-red-900 hover:bg-red-800" onClick={handleLogout}>
+            <Button className="w-full bg-red-900 hover:bg-red-800" type="button" onClick={handleLogout}>
               Sair
             </Button>
           </CardFooter>
