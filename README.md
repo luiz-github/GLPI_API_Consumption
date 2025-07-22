@@ -25,6 +25,7 @@ A aplicação possui autenticação com **usuário e senha**, envia as credencia
 - Tela de criação de chamados com:
   - Campo de quantidade de chamados
   - Campo de texto para descrição do chamado
+  - Campo de texto para descrição do chamado (a **primeira linha será usada como título**)
   - Botão para envio
   - Botão para logout
 - Integração direta com a API do GLPI da Unimontes
