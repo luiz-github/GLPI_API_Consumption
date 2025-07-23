@@ -5,11 +5,8 @@ class TicketController {
     ticketURL = "/Ticket"
 
     async createTicket(amount: number, ticket: string, sessionToken: string | null) {
-        const token = sessionToken
         const tbf = new TicketBodyFilter()
         const data = await tbf.filter(ticket)
-        
-        console.log(data, token)
 
         for (let i = 1; i <= amount; i++) {
             await fetch(
