@@ -2,6 +2,7 @@ class SessionController {
     apiURL = import.meta.env.VITE_API_BASE_URL
     initSessionURL = "/initSession"
     killSessionURL = "/killSession"
+    getFullSessionURL = "/getFullSession"
 
     async initSession(username: string, password: string) {
         try {
@@ -15,19 +16,20 @@ class SessionController {
                     }
                 }
             )
+            
             const data = await response.json()
-
+            
             if (response.status != 200) {
                 return {
                     "success": false,
                     "data": data
                 }
             }
-
+            
             if (data?.session_token) {
                 localStorage.setItem("Token", data.session_token)
             }
-
+            
             return {
                     success: true,
                     data: data
@@ -55,6 +57,24 @@ class SessionController {
             success: true,
             data: data 
         }
+    }
+
+    async getSessionUserID(sessionToken: string | null) {
+        const response = await fetch(
+            `${this.apiURL}${this.getFullSessionURL}`,
+            {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Session-Token': `${sessionToken}`
+                }
+            }
+        )
+
+        const data = await response.json()
+
+        return data.glpiID
+
     }
 }
 
