@@ -70,11 +70,8 @@ class SessionController {
                 }
             }
         )
-
         const data = await response.json()
-
         return data.glpiID
-
     }
 }
 

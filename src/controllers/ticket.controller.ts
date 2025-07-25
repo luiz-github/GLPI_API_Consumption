@@ -31,7 +31,7 @@ class TicketController {
     private async assignTicket(ticketID: number, techID: number, sessionToken: string | null) {
         const session = new SessionController()
         const sessionUserID = await session.getSessionUserID(sessionToken) // id do usuário da sessão atual.
-        const assignTech = [
+        let assignTech = [
             {
                 input: {
                     tickets_id: ticketID,
@@ -47,6 +47,11 @@ class TicketController {
                 }
             }
         ]
+
+        if (techID === 0) {
+            assignTech.pop()
+        }
+
         for (let i = 0; i < assignTech.length; i++) {
             await fetch(
                 `${this.apiURL}${this.ticketURL}/${ticketID}${this.assignURL}`,
