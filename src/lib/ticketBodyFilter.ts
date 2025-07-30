@@ -8,13 +8,13 @@ class TicketBodyFilter {
                 input: {
                     name: title,
                     content: description,
-                    locations_id: 1
+                    locations_id: 1, // id da unidade unimontes sede
                 }
             }
             return data
     
         } catch (err) {
-            if (err) throw err;
+            throw err;
         }
     }
 }
