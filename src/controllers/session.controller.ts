@@ -28,7 +28,6 @@ class SessionController {
                     }
                 }
             )
-            
             const data = await response.json()
             
             if (!response.ok) {
@@ -38,9 +37,7 @@ class SessionController {
                 }
             }
             
-            if (data?.session_token) {
-                localStorage.setItem("Token", data.session_token)
-            }
+            localStorage.setItem("Token", data.session_token)
             
             return {
                 success: true,
@@ -56,16 +53,7 @@ class SessionController {
     }
 
     async killSession(sessionToken: string | null): Promise<defaultReturn> {
-        const response = await fetch(
-            `${this.apiURL}${this.killSessionURL}`,
-            {
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Session-Token': `${sessionToken}`
-                }
-            }
-        )
+        const response = await this.genericRequest("GET", this.killSessionURL, sessionToken)
         const data = await response.json()
         localStorage.removeItem("Token")
         return {
@@ -75,21 +63,22 @@ class SessionController {
     }
 
     async getSessionUserID(sessionToken: string | null): Promise<defaultReturn> {
-        const response = await fetch(
-            `${this.apiURL}${this.getFullSessionURL}`,
-            {
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Session-Token': `${sessionToken}`
-                }
-            }
-        )
+        const response = await this.genericRequest("GET", this.getFullSessionURL, sessionToken)
         const data = await response.json()
         return {
             success: true,
             data: data.session.glpiID
         }
+    }
+
+    private async genericRequest(method: string, endpoint: string, sessionToken: string | null) {
+        return fetch(`${this.apiURL}${endpoint}`, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+                'Session-Token': sessionToken ?? '',
+            }
+        })
     }
 }
 
